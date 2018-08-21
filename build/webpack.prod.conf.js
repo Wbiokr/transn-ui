@@ -28,8 +28,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     publicPath:'./dist/',
-    filename: 'js/[name].[hash:5].js',
-    chunkFilename: 'js/[name].[hash:5].js'
+    filename: 'js/[name].'+version+'.js',
+    chunkFilename: 'js/[name].'+version+'.js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -84,14 +84,14 @@ const webpackConfig = merge(baseWebpackConfig, {
       inject: false,
       normalize:'./static/normalize.css',
       boot:'./static/bootstrap.min.css',
-      style:'./dist/css/app.[hash:5].css',
+      style:'./dist/css/app.'+version+'.css',
       config:'./static/config.js?version='+version,
       // ajax:'./static/abcxydhpx.js?version='+version,
       vue:'./static/lib/vue.min.js',
       vuex:'./static/lib/vuex.min.js',
       router:'./static/lib/vue-router.min.js',
-      script:'./dist/js/app.js.[hash:5]',
-      utils:'./dist/js/utils.js.[hash:5]',
+      script:'./dist/js/app.'+version+'.js',
+      utils:'./dist/js/utils.'+version+'.js',
       minify: {
         removeComments: true,
         // collapseWhitespace: true,

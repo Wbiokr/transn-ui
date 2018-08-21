@@ -19,16 +19,12 @@ nav
   height 100%
   overflow auto
   font-size 1.2rem
-  // ul
   width 20%
-  // height calc(100% - 40px)
   height 100%
   position fixed
   top 0
   left 0
   overflow auto
-  // &::-webkit-scrollbar
-  //   display none
   ul
     // height 2000px
     // padding 1rem 0  0 2rem
