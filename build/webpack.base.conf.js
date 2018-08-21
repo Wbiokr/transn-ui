@@ -78,7 +78,7 @@ module.exports = {
         loader: 'url-loader',
         include:resolve('src'),
         options: {
-          publicPath:process.env.NODE_ENV=='production'?'/dist/':'../../',
+          publicPath:process.env.NODE_ENV=='production'?'/transn-ui/dist/':'../../',
           limit: 1000,
           name: utils.assetsPath('img/[name].[ext]')
         }
