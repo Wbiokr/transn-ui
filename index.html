@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <meta http-equiv=X-UA-Compatible content="ie=edge">
+    
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>海外平台</title>
+    <link href=./static/bootstrap.min.css rel=stylesheet>
+    
+    <link rel=stylesheet href=./dist/css/app.49204.css>
+    <script>
+        if(navigator.userAgent.indexOf('Android 4')>-1){
+            var cusDom=document.createElement('script');
+            cusDom.setAttribute('src','https://image.youdingkeji.com/js/pollify.js');
+            document.head.appendChild(cusDom)
+        }
+        if(!window.Promise){
+            var cusDom=document.createElement('script');
+            cusDom.setAttribute('src','https://image.youdingkeji.com/js/promise.js');
+            document.head.appendChild(cusDom)
+        }
+    </script>
+    <script src="./static/config.js?version=2018-8-17-298"></script>    
+</head>
+<body>
+    <div id=app></div>
+    <script src=./static/lib/vue.min.js></script>    
+    
+    <script src=./static/lib/vuex.min.js></script>    
+    <script src=./dist/js/app.js.[hash:5]></script>
+</body>
+</html>
