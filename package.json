@@ -32,7 +32,7 @@
     "style-loader": "^0.19.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "transn": "^1.6.9",
+    "transn": "^1.6.10",
     "vue-awesome-swiper": "^3.1.0",
     "vue-pull-to": "^0.1.6",
     "vue-router": "^3.0.1",

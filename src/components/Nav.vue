@@ -1,6 +1,5 @@
 <template>
   <nav>
-    <!-- <h3>components</h3> -->
     <ul>
       <li v-for='(item,index) in routes' :key='index'>
         <h4>{{item.name}}</h4>

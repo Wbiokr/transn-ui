@@ -1,5 +1,5 @@
 <template lang="jade">
-  .com-demo.p-r
+  .com-demo.p-r(v-bind:class='{coding:isCode}')
     h4.p-a.f-5
       | 灰色边框以内为组件预览部分,右侧箭头可以切换代码与预览
       img.f-r.c-p(src='../imgs/icon_toggle.png' title='点击切换图片查看代码' @click='isCode=!isCode')
@@ -65,6 +65,9 @@ export default {
   // margin-right 
   // margin  0 auto
   border 1px solid #dedede
+  &.coding
+    box-shadow none
+    background #fff
   >h4
     top -2rem
     left 0
@@ -81,8 +84,13 @@ export default {
   .code
     font-size 20px
     pre
-      width 50%
+      width 60%
+      color #38e
+      font-size 14px
+      &:first-child
+        width 40%
       // padding-right 2rem
+    
       img 
         margin-left 2rem
         height 24px

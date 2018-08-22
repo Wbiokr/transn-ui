@@ -72,7 +72,8 @@ export default {
         {name:'msg',content:'toast内容',type:1,allV:'',defaultV:''},
         {name:'time',content:'持续时间',type:5,allV:'',defaultV:3000},
         {name:'type',content:'位置',type:1,allV:['middle','top','bottom'],defaultV:'middle'},
-      ]
+      ],
+      msg:'请输入内容'
     }
   },
   methods:{
