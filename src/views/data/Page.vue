@@ -34,7 +34,6 @@ export default {
           components:{tPage},
           methods:{
             changePage(e){
-              if(e==1) return ;
               alert('当前页面为:'+e)
             }
           }
@@ -75,7 +74,6 @@ export default {
   },
   methods:{
     changePage(e){
-      if(e==1) return ;
       alert(`当前页面为:${e}`)
     }
   }

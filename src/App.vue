@@ -40,7 +40,7 @@ body
   overflow auto
   padding-top 20px
   padding-left 20%
-
+  min-width 1200px
   >nav,>main
     // height calc(100% - 40px)
     padding-bottom 50px

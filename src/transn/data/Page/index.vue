@@ -28,8 +28,17 @@ export default {
   },
   data(){
     return{
+      isFirst:true,
       page:1,
       pages:[1,2,3,4,5,6],
+    }
+  },
+  watch:{
+    page(){
+      // with(this){
+      //   isFirst=false
+      // }
+      this.isFirst=false
     }
   },
   created(){
@@ -72,7 +81,7 @@ export default {
         }
       }
 
-      this.cb&&this.cb(this.page)
+      !this.isFirst&&this.cb&&this.cb(this.page)
     }
   }
 }
