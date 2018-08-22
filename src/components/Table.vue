@@ -6,10 +6,10 @@
     tbody
       tr(v-for='(item,index) in list' v-bind:key='index' )  
         td {{item.name}}
-        td {{item.content}}
-        td {{item.type | changeType}}
-        td {{item.allV||'任意符合类型内容'}}
-        td {{item.defaultV||'默认为空'}}
+        td(v-if='titles.length>=2') {{item.content}}
+        td(v-if='titles.length>=3') {{item.allV||'任意符合类型内容'}}
+        td(v-if='titles.length>=4') {{item.defaultV||'默认为空'}}
+        td(v-if='titles.length>=5') {{item.type | changeType}}
 </template>
 <script>
 export default {
@@ -18,10 +18,6 @@ export default {
       type:[Object,Array],
       default(){
         return [
-          {name:'color',content:'颜色',type:1,allV:['red','pink'],defaultV:'red'},
-          {name:'color1',content:'颜色',type:1,allV:['red','pink'],defaultV:'red'},
-          {name:'color2',content:'颜色',type:1,allV:['red','pink'],defaultV:'red'},
-          {name:'color3',content:'颜色',type:1,allV:['red','pink'],defaultV:'red'},
         ]
       }
     },
@@ -29,7 +25,7 @@ export default {
       type:[Array],
       default(){
         return [
-          '属性','说明','类型','可选值','默认值'
+          '属性','说明','可选值','默认值','类型'
         ]
       }
     }

@@ -7,6 +7,11 @@ const LayFooter = res => require.ensure([], () => res(require('../views/layout/F
 // 弹窗相关
 const PopToast = res => require.ensure([], () => res(require('../views/pop/Toast.vue')), 'PopFooter');
 
+// form相关
+const Check = res => require.ensure([], () => res(require('../views/form/Check.vue')), 'FormCheck');
+
+// data相关
+const DataPage = res => require.ensure([], () => res(require('../views/data/Page.vue')), 'DataPage');
 
 
 export default [
@@ -23,6 +28,9 @@ export default [
     name:'Form',
     path:'/form',
     component:Config,
+    children:[
+      {name:'check',path:'check',component:Check}
+    ]
   },
   {
     name:'Pop',
@@ -32,4 +40,12 @@ export default [
       {name:'toast',path:'toast',component:PopToast}
     ]
   },
+  {
+    name:'Data',
+    path:'/data',
+    component:Config,
+    children:[
+      {name:'page',path:'page',component:DataPage}
+    ]
+  }
 ]
