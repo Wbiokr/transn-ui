@@ -30,6 +30,7 @@ export default {
     return{
       isFirst:true,
       page:1,
+      isLoading:false,
       pages:[1,2,3,4,5,6],
     }
   },
@@ -47,16 +48,21 @@ export default {
   },
   methods:{
     prev(){
+      if(this.isLoading) return ;
       if(this.page<=1) return ;
       this.page--;
       this.calPages();
     },
     next(){
+      if(this.isLoading) return ;
+
       if(this.page>=Math.round(this.total/this.size)) return ;
       this.page++;
       this.calPages()
     },
     jump(p){
+      if(this.isLoading) return ;
+
       this.page=p;
       this.calPages()
 
@@ -79,9 +85,31 @@ export default {
         }else{
           this.pages=[this.page-3,this.page-2,this.page-1,this.page,this.page+1,this.page+2]
         }
-      }
+      };
+      
+      const self=this;
 
-      !this.isFirst&&this.cb&&this.cb(this.page)
+      !self.isFirst&&self.cb&&self.cb(self.page)
+
+      this.isLoading=false;
+
+      // async function callback(params) {
+        
+      //   !self.isFirst&&self.cb&&self.cb(self.page)
+
+      // };
+
+      // async function changeLoading(){
+      //   await callback()
+      // } 
+
+      // await callback().then((v)=>{
+
+      //   this.isLoading=false;
+      //   console.log('121:'+v)
+      // })
+
+
     }
   }
 }

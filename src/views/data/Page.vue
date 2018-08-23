@@ -74,7 +74,11 @@ export default {
   },
   methods:{
     changePage(e){
-      alert(`当前页面为:${e}`)
+      setTimeout(()=>{
+
+        console.log(`当前页面为:${e}`)
+      
+      },2000)
     }
   }
 }
