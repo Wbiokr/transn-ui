@@ -6,7 +6,7 @@
       div(slot='s-use') 项目中，数据较多，需要按页请求数据时调用
       div(slot='s-code') 
         vWrapper
-          tPage(slot='com' current='1' total='89' v-bind:cb='changePage')
+          tPage(slot='com' v-bind:current='page' total='89' v-bind:cb='p=>page=p')
           div(slot='tem') {{tem}}
           div(slot='scr') {{scr}}
       div(slot='s-api') 
@@ -22,9 +22,14 @@ export default {
   components: { vDetail, vWrapper, vTabel,tPage },
   data() {
     return {
+      page:1,
       tem: `
           <template>
-            <tPage current='1' total='90' v-bind:cb='changePage' />
+            <tPage 
+             v-bind:current='page'
+             total='90'
+             v-bind:cb='p=>page=p'
+            />
           </template>
           `,
 
@@ -32,11 +37,10 @@ export default {
         import tPage from 'transn/Page/'
         export default {
           components:{tPage},
-          methods:{
-            changePage(e){
-              alert('当前页面为:'+e)
-            }
-          }
+          data(){return{
+            page:1,
+          }},
+          
         }
           `,
       list: [

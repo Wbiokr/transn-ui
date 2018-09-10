@@ -1,9 +1,16 @@
 <template>
     <section class="item-page" v-show='total/size>1'>
         <div class="p-ul">
-            <a href="javascript:;" class="up" @click='prev' :class='{dis:Number(page)<=1}'></a>
-            <a v-for='(item,index) in pages' v-bind:key='index' @click='jump(item)' v-bind:class='{cur:item==page}'>{{item}}</a> 
-            <a href="javascript:;" class="next" @click='next' :class='{dis:Number(page)>=Math.round(total/size)}'></a>
+            <a href="javascript:;" class="up" @click='prev' :class='{dis:Number(current)<=1}'>
+              <span></span>
+            </a>
+            <a v-for='(item,index) in pages' v-bind:key='index' @click='jump(item)' v-bind:class='{cur:item==current}'>{{item}}</a> 
+            <a href="javascript:;" class="next" @click='next' :class='{dis:Number(current)>=Math.ceil(total/size)}'>
+              <span></span>
+            </a>
+            <span>跳至</span>
+            <input type="text" oninput='value=value.replace(/[^\d]/g,"")'  style="cursor:auto;" @keyup.enter='jump(Number($event.target.value))'  />
+            <span>页</span>
         </div>
     </section>
 </template>
@@ -28,47 +35,41 @@ export default {
   },
   data(){
     return{
-      isFirst:true,
-      page:1,
-      isLoading:false,
+      // page:1,
       pages:[1,2,3,4,5,6],
     }
   },
   watch:{
-    page(){
-      // with(this){
-      //   isFirst=false
-      // }
-      this.isFirst=false
+    total(){
+      this.updatePages()
     }
   },
-  created(){
-    this.page=this.current;
-    this.calPages();
+  mounted(){
+    this.updatePages()
+    // this.page=this.current;
+    // this.calPages(this.current);
   },
   methods:{
     prev(){
-      if(this.isLoading) return ;
-      if(this.page<=1) return ;
-      this.page--;
-      this.calPages();
+      if(this.current<=1) return ;
+      // this.page--;
+      this.calPages(this.current-1);
     },
     next(){
-      if(this.isLoading) return ;
-
-      if(this.page>=Math.round(this.total/this.size)) return ;
-      this.page++;
-      this.calPages()
+      if(this.current>=Math.ceil(this.total/this.size)) return ;
+      // this.page++;
+      this.calPages(this.current+1)
     },
     jump(p){
-      if(this.isLoading) return ;
+      // this.page=p;
+      if(p<1) return ;
+      if(p>Math.ceil(this.total/this.size)) return ;
 
-      this.page=p;
-      this.calPages()
+      this.calPages(p)
 
     },
-    calPages(){
-      const maxPage=Math.round(this.total/this.size)
+    updatePages(){
+      const maxPage=Math.ceil(this.total/this.size)
 
       if(maxPage>=1&&maxPage<=6){
         const newpage=[];
@@ -78,38 +79,36 @@ export default {
         this.pages=newpage;
 
       }else{
-        if(this.page<=4){
+        if(this.current<=4){
           this.pages=[1,2,3,4,5,6]
-        }else if(this.page>maxPage-2){
+        }else if(this.current>maxPage-2){
           this.pages=[maxPage-5,maxPage-4,maxPage-3,maxPage-2,maxPage-1,maxPage]
         }else{
-          this.pages=[this.page-3,this.page-2,this.page-1,this.page,this.page+1,this.page+2]
+          this.pages=[this.current-3,this.current-2,this.current-1,this.current,this.current+1,this.current+2]
         }
-      };
-      
-      const self=this;
+      }
+    },
+    calPages(p){
+      const maxPage=Math.ceil(this.total/this.size)
 
-      !self.isFirst&&self.cb&&self.cb(self.page)
+      if(maxPage>=1&&maxPage<=6){
+        const newpage=[];
+        for(let i=0;i<maxPage;i++){
+          newpage.push(i+1)
+        }
+        this.pages=newpage;
 
-      this.isLoading=false;
+      }else{
+        if(p<=4){
+          this.pages=[1,2,3,4,5,6]
+        }else if(p>maxPage-2){
+          this.pages=[maxPage-5,maxPage-4,maxPage-3,maxPage-2,maxPage-1,maxPage]
+        }else{
+          this.pages=[p-3,p-2,p-1,p,p+1,p+2]
+        }
+      }
 
-      // async function callback(params) {
-        
-      //   !self.isFirst&&self.cb&&self.cb(self.page)
-
-      // };
-
-      // async function changeLoading(){
-      //   await callback()
-      // } 
-
-      // await callback().then((v)=>{
-
-      //   this.isLoading=false;
-      //   console.log('121:'+v)
-      // })
-
-
+      this.cb&&this.cb(p)
     }
   }
 }
@@ -117,63 +116,74 @@ export default {
 
 <style scoped lang='scss'>
 .item-page {
-  text-align: center;
+  text-align: right;
   margin:0 auto;
   // padding: 20px ;
-  padding:50px 20px;
+  padding-top: 20px;
 }
 .item-page *{
   transition:none;
 }
-.item-page a {
+.item-page a ,.item-page input{
   display: inline-block;
-  font-size: 14px;
+  font-size: .7px;
   color: rgba(0, 0, 0, 0.87);
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
+  float: left;
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
   text-align: center;
-  margin:0 10px;
+  margin:0 .3rem;
+  border:1px solid #D8D8D8;
+  border-radius:4px;
   cursor: pointer;
-  border-radius: 100%;
-  &:hover{
-    transition: all ease 0.3s;
+  &.up span{
+    transform: rotate(135deg);
+    // trans
   }
-  &:hover,&.cur {
-    background-image: linear-gradient(-49deg, #FD76A6 0%, #FFDCA2 100%);
-    box-shadow: 0 3px 10px 0 rgba(253, 140, 165, 0.71);
-    color: rgba(255, 255, 255, 0.87);
+  &.next span{
+    transform: rotate(-45deg);
   }
-  &.up,&.next{
-    border-radius: 0;
-    border-top:6px solid transparent;
-    border-bottom:6px solid transparent;
-    &:hover,&.dis{
-      background: none;
-      box-shadow: none;
-      opacity: 0.5;
+  &.dis{
+    cursor:not-allowed;
+    color: #ccc;
+    border-color:#ccc;
+    span{
+       
     }
   }
-  &.next{
-    border-left:6px solid #000;
-    border-right:6px solid transparent;
+  span{
+    display: inline-block;
+    height: .5rem;
+    width: .5rem;
+    border:1px solid #999;
+    border-left:none;
+    border-top:none;
+  }
+  // border-radius: 100%;
+  &:hover{
+    transition: all ease 0.3s;
 
   }
-  &.up{
-    border-left:6px solid transparent;
-    border-right:6px solid #000;
-
+  &:hover,&.cur {
+    // background-image: linear-gradient(-49deg, #FD76A6 0%, #FFDCA2 100%);
+    // box-shadow: 0 3px 10px 0 rgba(253, 140, 165, 0.71);
+    color: #9C92FF ;
+    border-color:#9C92FF ;
+    span{
+      border-color:#9C92FF;
+    }
   }
+  
 }
-.item-page a.up,
-.item-page a.next {
-  width: 6px;
-  height: 11px;
+.item-page input{
+  width:2.5rem;
 }
-.item-page a.up img,
-.item-page a.next img {
-  width: 100%;
-  height: 100%;
+.item-page .p-ul >span{
+  float: left;
+  height: 1.6rem;
+  line-height:1.6rem;
+  padding: 0 .5rem;
 }
 .item-page .p-ul {
   display: inline-block;
