@@ -5,7 +5,9 @@ const LayNav = res => require.ensure([], () => res(require('../views/layout/Nav.
 const LayFooter = res => require.ensure([], () => res(require('../views/layout/Footer.vue')), 'LayFooter');
 
 // 弹窗相关
-const PopToast = res => require.ensure([], () => res(require('../views/pop/Toast.vue')), 'PopFooter');
+const PopToast = res => require.ensure([], () => res(require('../views/pop/Toast.vue')), 'PopToast');
+const PopLoading = res => require.ensure([], () => res(require('../views/pop/Loading.vue')), 'PopLoading');
+const PopAlert = res => require.ensure([], () => res(require('../views/pop/Alert.vue')), 'PopAlert');
 
 // form相关
 const Check = res => require.ensure([], () => res(require('../views/form/Check.vue')), 'FormCheck');
@@ -37,7 +39,9 @@ export default [
     path:'/pop',
     component:Config,
     children:[
-      {name:'toast',path:'toast',component:PopToast}
+      {name:'toast',path:'toast',component:PopToast},
+      {name:'alert',path:'alert',component:PopAlert},
+      {name:'loading',path:'loading',component:PopLoading},
     ]
   },
   {
