@@ -16,12 +16,20 @@ const Loading = {
 
     $.prototype.$loading=({
       action=true,
-      type=1,
-      zz=0,
+      img=require('./loading1.gif'),
+      bg='rgba(#fff,.15)',
     })=>{
       Loading.lock=false;
       MyLoading.isLoading=action;
-      
+      MyLoading.img=img;
+      MyLoading.bg=bg;
+      MyLoading.hasZz=true;
+
+      // console.log(MyLoading)
+
+      // !!bg&&(MyLoading.bg=bg);
+      // !!img&&(MyLoading.img=img);
+      bg===false&&(MyLoading.hasZz=false)
     }
   }
 }

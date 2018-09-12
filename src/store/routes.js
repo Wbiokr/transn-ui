@@ -11,6 +11,7 @@ const PopAlert = res => require.ensure([], () => res(require('../views/pop/Alert
 
 // form相关
 const Check = res => require.ensure([], () => res(require('../views/form/Check.vue')), 'FormCheck');
+const Verify = res => require.ensure([], () => res(require('../views/form/Verify.vue')), 'FormVerify');
 
 // data相关
 const DataPage = res => require.ensure([], () => res(require('../views/data/Page.vue')), 'DataPage');
@@ -31,7 +32,8 @@ export default [
     path:'/form',
     component:Config,
     children:[
-      {name:'check',path:'check',component:Check}
+      {name:'check',path:'check',component:Check},
+      {name:'verify',path:'verify',component:Verify},
     ]
   },
   {

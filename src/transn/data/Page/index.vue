@@ -26,7 +26,7 @@ export default {
       type:[Number,String], //当前页码数
     },
     size:{
-      default:10,
+      default:5,
       type:[Number,String], //每页项目数
     },
     cb:{

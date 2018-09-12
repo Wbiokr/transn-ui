@@ -9,11 +9,11 @@
           div.t-com(slot='com')
             
             p
-              button.c-p(@click='$loading(true)') loading1
-              button.c-p(@click='pop("top")') loading2
-              button.c-p(@click='pop("top")') loading3
-              button.c-p(@click='pop("top")') loading(遮罩)
-              button.c-p(@click='pop("middle")') 关闭
+              button.c-p(@click='$loading({action:true,bg:false})') 无遮罩
+              button.c-p(@click='$loading({action:true,img:img,bg:false})') 无遮罩+自定义loading图
+              button.c-p(@click='$loading({action:true,bg:true})') 有遮罩
+              button.c-p(@click='$loading({action:true,bg:"rgba(0,0,0,0.4)"})') 自定义遮罩
+              button.c-p(@click='$loading({action:false})') 关闭
           span.f-l(slot='t-t') 入口(如:main.js)引入
           div(slot='tem') {{tem}}
           span.f-l(slot='s-t') 引用处
@@ -33,7 +33,8 @@
       padding-left 2rem
       width 100%
     button 
-      width 9rem
+      min-width 9rem
+      padding 0 1rem
       margin-right 1.5rem
       line-height 2rem
       border 0
@@ -47,7 +48,7 @@
 
 <script>
 import vDetail from '@/Detail.vue'
-import tFooter from 'transn/dist/Footer/'
+// import tFooter from 'transn/dist/Footer/'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
 import Loading from '../../transn/pop/loading/index'
@@ -56,28 +57,26 @@ Vue.use(Loading);
 
 
 export default {
-  components:{vDetail,tFooter,vWrapper,vTabel},
+  components:{vDetail,vWrapper,vTabel},
   data(){
     return {
+      img:require('./loading2.gif'),
       tem:`
-          import toast from 'transn/dist/Toast/';
+          import loading from 'transn/dist/Loading/';
 
-          Vue.use(toast)
+          Vue.use(loading)
           `,
       scr:`
-          methods:{
-            pop(type){
-              this.$toast({
-                msg:this.msg,
-                type
-              })
-            }
-          }
+            <button @click='$loading({action:true,bg:false})'>无遮罩</button>
+            <button @click='$loading({action:true,img:img,bg:false})'>无遮罩+自定义loading图</button>
+            <button @click='$loading({action:true,bg:true})'>有遮罩</button>
+            <button @click='$loading({action:true,bg:"rgba(0,0,0,0.4)"})'>自定义遮罩</button>
+            <button @click='$loading({action:false})'>关闭</button>
           `,
       list:[
-        {name:'msg',content:'toast内容',type:1,allV:'',defaultV:''},
-        {name:'time',content:'持续时间',type:5,allV:'',defaultV:3000},
-        {name:'type',content:'位置',type:1,allV:['middle','top','bottom'],defaultV:'middle'},
+        {name:'action',content:'loading(打开/关闭)',type:0,allV:[true,false],defaultV:true},
+        {name:'img',content:'GIF动态图',type:1,allV:'自己引用图片',defaultV:'见无遮罩loading'},
+        {name:'bg',content:'遮罩设置',type:[0,1],allV:['false','颜色值'],defaultV:'0.15透明度白色'},
       ],
       msg:'请输入内容'
     }

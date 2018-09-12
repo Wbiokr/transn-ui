@@ -5,11 +5,11 @@
         slot(name="t") 组件
       div
         slot(name='s')  
-    section.d-t-use
-      h3
-        slot(name='t-use') 何时使用 
-      div
-        slot(name='s-use') 
+    //- section.d-t-use
+    //-   h3
+    //-     slot(name='t-use') 何时使用 
+    //-   div
+    //-     slot(name='s-use') 
     section.d-t-code
       h3 
         slot(name='t-code') 代码演示

@@ -10,6 +10,8 @@
           div(slot='tem') {{tem}}
           div(slot='scr') {{scr}}
       div(slot='s-api') 
+        h4(style='line-height:36px;font-size:16px;padding:8px 0;')
+          | 当total&lt;size时，分页自动隐藏
         vTabel(v-bind:list='list')
 </template>
 <script>
@@ -18,8 +20,10 @@ import vDetail from '@/Detail.vue'
 import tPage from '../../transn/data/Page/index'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
+import {Page} from 'transn'
+
 export default {
-  components: { vDetail, vWrapper, vTabel,tPage },
+  components: { vDetail, vWrapper, vTabel,tPage,Page },
   data() {
     return {
       page:1,
@@ -53,7 +57,7 @@ export default {
         },
         {
           name: 'total',
-          content: '数据总量',
+          content: '数据总量（包括未请求数据）',
           type: 5,
           allV: '',
           defaultV: 0
@@ -67,7 +71,7 @@ export default {
         },
         {
           name: 'cb',
-          content: '改变页数回调函数，一般为交互函数',
+          content: '改变页数回调函数，一般为交互函数，接收参数page(当前页码数)',
           type: 2,
           allV: '',
           defaultV: '无'

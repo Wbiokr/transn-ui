@@ -59,6 +59,7 @@ module.exports = {
           options: vueLoaderConfig
         }],
         include: resolve('src'),
+        // include
       },
     
       {

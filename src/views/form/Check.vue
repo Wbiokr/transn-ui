@@ -67,7 +67,7 @@ export default {
           </p>
           `,
       scr:`
-          import check from '../../transn/form/check/index'
+          import check from 'transn/form/'
           methods:{
             ...check,
           }
