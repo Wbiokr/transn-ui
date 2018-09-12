@@ -2,7 +2,9 @@ import App from './App.vue'
 import router from './router.config'
 import Store from './store/index.js'
 
-import toast from 'transn/dist/Toast/'
+import toast from './transn/Toast/'
+// import toast from 'transn/dist/Toast/'
+
 
 import './utils/filter.js'
 import './utils/directive.js'

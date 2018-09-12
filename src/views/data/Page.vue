@@ -16,14 +16,13 @@
 </template>
 <script>
 import vDetail from '@/Detail.vue'
-// import tFooter from 'transn/dist/Footer/'
-import tPage from '../../transn/data/Page/index'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
-import {Page} from 'transn'
+// import tPage from '../../transn/Page/index'
+import tPage from 'transn/dist/Page/'
 
 export default {
-  components: { vDetail, vWrapper, vTabel,tPage,Page },
+  components: { vDetail, vWrapper, vTabel,tPage },
   data() {
     return {
       page:1,

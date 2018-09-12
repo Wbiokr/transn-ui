@@ -1,23 +1,36 @@
 <template lang="jade">
 transition(name='nf')
-  .com-notice-alt(v-if='!!msg')
-    article
-      p {{msg}}
+  .com-notice-alt(v-if='!!msg' v-bind:style='{"background-color":bg_zz}')
+    article(v-bind:style='{"border-radius":radius+"px","background-color":bg_ct}')
+      p(v-bind:style='{color:color_txt}') {{msg}}
       p(style='padding-top:1rem;')
-        button.c-p(@click='msg=""') 我知道了  
+        button(@click='msg=""' v-bind:style='{color:color_btn,background:bg_btn}') 我知道了  
 </template>
 <script>
 export default {
   data(){
     return{
 
-      msg:''
+      msg:'', //弹窗内容
+      radius:8, //圆角
+      bg_zz:'rgba(0,0,0,.7)', //遮罩背景色
+      bg_ct:'#fff',//内容背景色
+      bg_btn:'rgba(24,144,255,0.8)',//按钮背景色
+      color_btn:'#fff',//按钮色
+      color_txt:'#ED462F',//文本色
     }
   }
 }
 </script>
 <style lang="stylus" scoped>
+*
+  transition all  ease .3s
 
+.nf-enter,.nf-leave-to
+  // .com-notice-alt
+  background rgba(0,0,0,0)
+  article
+    transform scaleY(0)
 .com-notice-alt
   position fixed
   height 100%
@@ -33,15 +46,16 @@ export default {
     width 70%
     max-width 22rem
     background #fff
-    padding 2rem 4rem
+    padding 40px 80px
     box-shadow 0 2px 6px 2px rgba(255,0,0,0.06)
     border-radius 8px
     p
       text-align center
       width 100%
-      font-size .8rem
+      font-size 16px
       color #ED462F
       button 
+        border none 
         display inline-block
         width 140px
         height 30px
@@ -50,6 +64,8 @@ export default {
         background #301B60
         border-radius 2px
         color #fff
+        outline none
+        cursor pointer
         &:hover
           opacity .7
 </style>

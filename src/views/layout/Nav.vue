@@ -19,9 +19,10 @@
 <script>
 import vDetail from '@/Detail.vue'
 // import tNav from 'transn/dist/Footer/'
-import tNav from '../../transn/layout/nav/nav.vue'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
+// import tNav from '../../transn/Nav/index.js'
+import tNav from 'transn/dist/Nav/'
 export default {
   components: { vDetail, tNav, vWrapper, vTabel },
   data() {
@@ -34,7 +35,7 @@ export default {
           </template>
           `,
       scr2: `
-        import tNav from 'transn/Footer/'
+        import tNav from 'transn/Nav/'
         export default {
           components:{tNav},
         }
@@ -52,7 +53,7 @@ export default {
           </template>
           `,
       scr: `
-        import tNav from 'transn/Footer/'
+        import tNav from 'transn/Nav/'
         export default {
           components:{tNav},
           data(){
@@ -120,7 +121,7 @@ export default {
       ],
 
       scr: `
-            import tNav from 'transn/Footer/'
+            import tNav from 'transn/Nav/'
             export default {
               components:{tNav},
               data(){

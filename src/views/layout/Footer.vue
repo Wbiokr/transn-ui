@@ -18,10 +18,11 @@
 </template>
 <script>
 import vDetail from '@/Detail.vue'
-import tFooter from 'transn/dist/Footer/'
-// import tFooter from '../../transn/layout/footer/footer'
+// import tFooter from 'transn/dist/Footer/'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
+// import tFooter from '../../transn/Footer/index.js'
+import tFooter from 'transn/dist/Footer/'
 export default {
   components: { vDetail, tFooter, vWrapper, vTabel },
   data() {

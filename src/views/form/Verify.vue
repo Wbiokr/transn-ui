@@ -51,7 +51,8 @@
 import vDetail from '@/Detail.vue'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
-import verify from '../../transn/form/verify/verifyCard.js'
+// import verify from '../../transn/Verify/index.js'
+import verify from 'transn/dist/Verify/'
 
 export default {
   components:{vDetail,vWrapper,vTabel},

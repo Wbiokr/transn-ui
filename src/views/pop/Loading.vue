@@ -11,8 +11,10 @@
             p
               button.c-p(@click='$loading({action:true,bg:false})') 无遮罩
               button.c-p(@click='$loading({action:true,img:img,bg:false})') 无遮罩+自定义loading图
+            p
               button.c-p(@click='$loading({action:true,bg:true})') 有遮罩
               button.c-p(@click='$loading({action:true,bg:"rgba(0,0,0,0.4)"})') 自定义遮罩
+            p
               button.c-p(@click='$loading({action:false})') 关闭
           span.f-l(slot='t-t') 入口(如:main.js)引入
           div(slot='tem') {{tem}}
@@ -51,7 +53,8 @@ import vDetail from '@/Detail.vue'
 // import tFooter from 'transn/dist/Footer/'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
-import Loading from '../../transn/pop/loading/index'
+// import Loading from '../../transn/Loading/index'
+import Loading from 'transn/dist/Loading/'
 
 Vue.use(Loading);
 

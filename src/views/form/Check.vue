@@ -10,17 +10,15 @@
             p
               input(v-model='msg' placeholder='请输入想要验证字符串')
             p
-              button.c-p(@click='checkMobile(msg)') 手机号
-              button.c-p(@click='checkPassword(msg)') 密码验证
-              button.c-p(@click='checkEmail(msg)') Email验证
+              button.c-p(@click='checkMobile(msg)?$toast({msg:"验证通过"}):$toast({msg:"验证失败"})') 手机号
+              button.c-p(@click='checkEmail(msg)?$toast({msg:"验证通过"}):$toast({msg:"验证失败"})') Email验证
           //- span.f-l(slot='t-t') template部分
           div(slot='tem') {{tem}}
           //- span.f-l(slot='s-t') 引用处
           div(slot='scr') {{scr}}
       div(slot='s-api') 
+        h5(style='line-height:46px;font-size:18px;') 验证通过返回true，否则返回false
         vTabel(v-bind:list='list' v-bind:titles="['方法','使用','规则']")
-        //- section(v-for='(item,index) in list' v-bind:key='index')
-
 </template>
 <style lang="stylus" scoped>
 .t-com
@@ -50,7 +48,8 @@
 import vDetail from '@/Detail.vue'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
-import check from '../../transn/form/check/index'
+// import check from '../../transn/Check/index'
+import check from 'transn/dist/Check/'
 
 export default {
   components:{vDetail,vWrapper,vTabel},
@@ -62,22 +61,21 @@ export default {
           </p>
           <p>
             <button @click='checkMobile(msg)'> 手机号</button>
-            <button (@click='checkPassword(msg)'> 密码验证</button>
             <button @click='checkEmail(msg)'> Email验证</button>
           </p>
           `,
       scr:`
-          import check from 'transn/form/'
+          import check from 'transn/Check/'
           methods:{
             ...check,
           }
           `,
       msg:'',
       list:[
-        {name:'checkUsername',content:'checkUsername(name,cb)，name为检测对象(如input值),cb为检测失败，回调函数',allV:'6位字符检测'},
-        {name:'checkPassword',content:'checkPassword(pass,cb)，pass为检测对象(如input值),cb为检测失败，回调函数',allV:'8-16位字母数字组合字符'},
-        {name:'checkMobile',content:'checkMobile(phone,cb)，phone为检测对象(如input值),cb为检测失败，回调函数',allV:'11位1开头正常手机号'},
-        {name:'checkEmail',content:'checkEmail(email,cb)，email为检测对象(如input值),cb为检测失败，回调函数',allV:'含有. @ .字符匹配'},
+        // {name:'checkUsername',content:'checkUsername(name,cb)，name为检测对象(如input值),cb为检测失败，回调函数',allV:'6位字符检测'},
+        // {name:'checkPassword',content:'checkPassword(pass,cb)，pass为检测对象(如input值),cb为检测失败，回调函数',allV:'8-16位字母数字组合字符'},
+        {name:'checkMobile',content:'checkMobile(phone)，phone为检测对象(如input值)',allV:'11位1开头正常手机号'},
+        {name:'checkEmail',content:'checkEmail(email)，email为检测对象(如input值)',allV:'含有. @ .字符匹配'},
       ],
     }
   },
