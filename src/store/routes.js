@@ -16,6 +16,11 @@ const Verify = res => require.ensure([], () => res(require('../views/form/Verify
 // data相关
 const DataPage = res => require.ensure([], () => res(require('../views/data/Page.vue')), 'DataPage');
 
+// untils
+const UtilsAjax = res => require.ensure([], () => res(require('../views/utils/Ajax.vue')), 'UtilsAjax');
+const UtilsRandom = res => require.ensure([], () => res(require('../views/utils/Random.vue')), 'UtilsRandom');
+const UtilsStamp = res => require.ensure([], () => res(require('../views/utils/Stamp.vue')), 'UtilsStamp');
+
 
 export default [
   {
@@ -53,5 +58,16 @@ export default [
     children:[
       {name:'page',path:'page',component:DataPage}
     ]
-  }
+  },
+
+  {
+    name:'Utils',
+    path:'/utils',
+    component:Config,
+    children:[
+      {name:'ajax',path:'ajax',component:UtilsAjax},
+      {name:'random',path:'random',component:UtilsRandom},
+      {name:'stamp',path:'stamp',component:UtilsStamp},
+    ]
+  },
 ]

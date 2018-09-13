@@ -8,9 +8,9 @@
             <a href="javascript:;" class="next" @click='next' :class='{dis:Number(current)>=Math.ceil(total/size)}'>
               <span></span>
             </a>
-            <span>跳至</span>
-            <input type="text" oninput='value=value.replace(/[^\d]/g,"")'  style="cursor:auto;" @keyup.enter='jump(Number($event.target.value))'  />
-            <span>页</span>
+            <span v-if='isJump'>跳至</span>
+            <input v-if='isJump' type="text" oninput='value=value.replace(/[^\d]/g,"")'  style="cursor:auto;" @keyup.enter='jump(Number($event.target.value))'  />
+            <span v-if='isJump'>页</span>
         </div>
     </section>
 </template>
@@ -31,7 +31,12 @@ export default {
     },
     cb:{
       type:Function, //回调函数
-    }
+    },
+    isJump:{
+      type:[Number,String,Boolean],
+      default:false,
+    },
+    // color:
   },
   data(){
     return{
@@ -126,14 +131,14 @@ export default {
 }
 .item-page a ,.item-page input{
   display: inline-block;
-  font-size: .7px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.87);
   float: left;
-  width: 1.6rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
+  width: 1.6*20px;
+  height: 1.6*20px;
+  line-height: 1.6*20px;
   text-align: center;
-  margin:0 .3rem;
+  margin:0 .3*20px;
   border:1px solid #D8D8D8;
   border-radius:4px;
   cursor: pointer;
@@ -154,8 +159,8 @@ export default {
   }
   span{
     display: inline-block;
-    height: .5rem;
-    width: .5rem;
+    height: .5*20px;
+    width: .5*20px;
     border:1px solid #999;
     border-left:none;
     border-top:none;
@@ -177,13 +182,13 @@ export default {
   
 }
 .item-page input{
-  width:2.5rem;
+  width:2.5*20px;
 }
 .item-page .p-ul >span{
   float: left;
-  height: 1.6rem;
-  line-height:1.6rem;
-  padding: 0 .5rem;
+  height: 1.6*20px;
+  line-height:1.6*20px;
+  padding: 0 .5*20px;
 }
 .item-page .p-ul {
   display: inline-block;

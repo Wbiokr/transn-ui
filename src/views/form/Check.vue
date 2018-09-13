@@ -60,8 +60,18 @@ export default {
             <input v-model='msg' placeholder='请输入想要验证字符串' />
           </p>
           <p>
-            <button @click='checkMobile(msg)'> 手机号</button>
-            <button @click='checkEmail(msg)'> Email验证</button>
+            <button 
+              @click='
+                checkMobile(msg)
+                ?$toast({msg:"验证通过"})
+                :$toast({msg:"验证失败"})'
+            > 手机号</button>
+            <button 
+              @click='
+                checkEmail(msg)
+                ?$toast({msg:"验证通过"})
+                :$toast({msg:"验证失败"})'
+            > Email验证</button>
           </p>
           `,
       scr:`

@@ -5,34 +5,50 @@
       div(slot='s') 数据列表分页
       div(slot='s-use') 项目中，数据较多，需要按页请求数据时调用
       div(slot='s-code') 
+        button(@click='isJump=!isJump') {{!isJump?'开启':'关闭'}} 
+        span 跳跃框
         vWrapper
-          tPage(slot='com' v-bind:current='page' total='89' v-bind:cb='p=>page=p')
+          //- p?
+
+          tPage(slot='com' v-bind:current='page' total='89' v-bind:cb='p=>page=p' v-bind:isJump='isJump')
           div(slot='tem') {{tem}}
           div(slot='scr') {{scr}}
       div(slot='s-api') 
         h4(style='line-height:36px;font-size:16px;padding:8px 0;')
-          | 当total&lt;size时，分页自动隐藏
+          | 当total&lt;size时，分页自动隐藏,样式可以自定义(加类名或原基础修改)
         vTabel(v-bind:list='list')
 </template>
 <script>
 import vDetail from '@/Detail.vue'
 import vWrapper from '@/Demo.vue'
 import vTabel from '@/Table.vue'
-// import tPage from '../../transn/Page/index'
-import tPage from 'transn/dist/Page/'
+import tPage from '../../transn/Page/index'
+// import tPage from 'transn/dist/Page/'
 
 export default {
   components: { vDetail, vWrapper, vTabel,tPage },
   data() {
     return {
       page:1,
+      isJump:false,
       tem: `
           <template>
-            <tPage 
-             v-bind:current='page'
-             total='90'
-             v-bind:cb='p=>page=p'
-            />
+            <div>
+
+              <tPage 
+              v-bind:current='page'
+              total='90'
+              v-bind:cb='p=>page=p'
+              v-bind:isJump='isJump'
+              />
+
+              <button @click='isJump=!isJump'>
+                {{isJump?'开启':'关闭'}}
+              </button> 
+              
+              <span> 跳跃框</span>
+            
+            </div>
           </template>
           `,
 
@@ -42,6 +58,7 @@ export default {
           components:{tPage},
           data(){return{
             page:1,
+            isJump:false,
           }},
           
         }
@@ -74,6 +91,13 @@ export default {
           type: 2,
           allV: '',
           defaultV: '无'
+        },
+        {
+          name: 'isJump',
+          content: '是否开启跳跃框',
+          type: 0,
+          allV: '[true,false]',
+          defaultV: 'false'
         },
       ],
       
